@@ -4,12 +4,26 @@
 <div class="container">
     <div>
         <h1>Hello Spring</h1>
-        <p>회원 기능</p>
+        <p>회원 관리 페이지</p>
         <p>
             <a href="/members/new">회원 가입</a>
             <a href="/members">회원 목록</a>
         </p>
     </div>
+    <div>
+        <form action="/members/find" method="post">
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+                <button type="submit">회원 검색</button>
+            </div>
+        </form>
+    </div>
+
+
+
+
+
 </div> <!-- /container -->
 </body>
 </html>

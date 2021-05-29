@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.memberweb.mapper.MemberMapper">
+    <insert id="saveMember" useGeneratedKeys="true" keyProperty="id" >
+        <![CDATA[
+			INSERT INTO members
+			(
+				name,
+				pw
+			)
+			VALUES
+			(
+				#{name},
+				#{pw}
+			)
+		]]>
+    </insert>
+
+    <select id="findAll" parameterType="string" resultType="com.example.memberweb.domain.Member">
+        <![CDATA[
+			SELECT
+				id,
+				name,
+				pw
+			FROM
+				members
+		]]>
+    </select>
+
+
+    <select id="findByName" parameterType="string" resultType="com.example.memberweb.domain.Member">
+        <![CDATA[
+			SELECT
+				id,
+				name,
+				pw
+			FROM
+				members
+			WHERE
+				name = #{name}
+		]]>
+    </select>
+
+
+
+<!--    <select id="findByName" parameterType="string" resultType="com.example.memberweb.domain.Member">-->
+<!--        <![CDATA[-->
+<!--			SELECT-->
+<!--				board_idx,-->
+<!--				title,-->
+<!--				hit_cnt,-->
+<!--				DATE_FORMAT(created_datetime, '%Y.%m.%d %H:%i:%s') AS created_datetime-->
+<!--			FROM-->
+<!--				t_board-->
+<!--			WHERE-->
+<!--				deleted_yn = 'N'-->
+<!--			ORDER BY board_idx DESC-->
+<!--		]]>-->
+<!--    </select>-->
+
+    <update id="updateHitCount" parameterType="int">
+        <![CDATA[
+			UPDATE
+				t_board
+			SET
+				hit_cnt = hit_cnt + 1
+			WHERE
+				board_idx = #{boardIdx}
+		]]>
+    </update>
+
+<!--    <update id="deleteBoard" parameterType="int">-->
+<!--        <![CDATA[-->
+<!--			UPDATE t_board SET-->
+<!--				deleted_yn = 'Y',-->
+<!--				updated_datetime = Now(),-->
+<!--				updater_id = 'admin'-->
+<!--			WHERE-->
+<!--				board_idx = #{boardIdx}-->
+<!--		]]>-->
+<!--    </update>-->
+</mapper>
